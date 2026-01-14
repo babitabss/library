@@ -3,7 +3,6 @@ from .models import Author, Category, Post, Comment
 from rest_framework.decorators import action
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 from .serializers import AuthorSerializer,CategorySerializer,PostSerilaizer,CommentSerializer
 
 class AuthorViewset(viewsets.ModelViewSet):
@@ -26,7 +25,7 @@ class CategoryViewset(viewsets.ModelViewSet):
 class PostViewset(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerilaizer
-    permission_classes = [AllowAny]
+    
     
     def get_queryset(self):
         queryset = Post.objects.all()
@@ -81,7 +80,7 @@ class PostViewset(viewsets.ModelViewSet):
 class CommentViewset(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer 
-    permission_classes = [AllowAny]  
+     
     
     #List pending comments
     @action(detail=False, methods=['get'])
